@@ -4,7 +4,7 @@ Provides strategies for authenticating to providers using the zhrID standard. (h
 
 ## Installation
 
-    gem install omniauth-zhrid
+    gem 'omniauth-zhrid', :git => 'git@github.com:Goorsky/omniauth-zhrid.git'
 
 ## Stand-Alone Example
 

@@ -6,7 +6,7 @@ module OmniAuth
   module Strategies
     # OmniAuth strategy for connecting via zhrID. This allows for connection
     # to a wide variety of sites, some of which are listed [on the OpenID website](http://openid.net/get-an-openid/).
-    class zhrID
+    class ZhrID
       include OmniAuth::Strategy
 
       AX = {
@@ -60,7 +60,7 @@ module OmniAuth
       end
 
       def get_identifier
-        f = OmniAuth::Form.new(:title => 'Log In')
+        f = OmniAuth::Form.new(:title => 'Logowanie')
         f.label_field('zhrID', options.identifier_param)
         f.input_field('url', options.identifier_param)
         f.to_response
@@ -118,5 +118,5 @@ module OmniAuth
   end
 end
 
-OmniAuth.config.add_camelization 'openid', 'OpenID'
-OmniAuth.config.add_camelization 'open_id', 'OpenID'
+OmniAuth.config.add_camelization 'zhrid', 'zhrID'
+OmniAuth.config.add_camelization 'zhr_id', 'zhrID'

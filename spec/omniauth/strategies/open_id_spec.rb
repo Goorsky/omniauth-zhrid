@@ -2,9 +2,9 @@ require 'spec_helper'
 require 'rack/openid'
 require 'omniauth-openid'
 
-describe OmniAuth::Strategies::OpenID, :type => :strategy do
+describe OmniAuth::Strategies::ZhrID, :type => :strategy do
   def app
-    strat = OmniAuth::Strategies::OpenID
+    strat = OmniAuth::Strategies::ZhrID
     Rack::Builder.new {
       use Rack::Session::Cookie
       use strat
