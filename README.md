@@ -1,10 +1,10 @@
-# OmniAuth::OpenID 
+# OmniAuth::zhrID 
 
-Provides strategies for authenticating to providers using the OpenID standard. 
+Provides strategies for authenticating to providers using the zhrID standard. (http://id.zhr.pl)
 
 ## Installation
 
-    gem install omniauth-openid
+    gem install omniauth-zhrid
 
 ## Stand-Alone Example
 

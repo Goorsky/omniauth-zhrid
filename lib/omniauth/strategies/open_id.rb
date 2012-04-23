@@ -4,9 +4,9 @@ require 'openid/store/memory'
 
 module OmniAuth
   module Strategies
-    # OmniAuth strategy for connecting via OpenID. This allows for connection
+    # OmniAuth strategy for connecting via zhrID. This allows for connection
     # to a wide variety of sites, some of which are listed [on the OpenID website](http://openid.net/get-an-openid/).
-    class OpenID
+    class zhrID
       include OmniAuth::Strategy
 
       AX = {
@@ -26,7 +26,7 @@ module OmniAuth
       option :optional, [AX[:nickname], AX[:city], AX[:state], AX[:website], AX[:image], 'postcode', 'nickname']
       option :store, ::OpenID::Store::Memory.new
       option :identifier, nil
-      option :identifier_param, 'openid_url'
+      option :identifier_param, 'zhrid'  # 'openid_url'
 
       def dummy_app
         lambda{|env| [401, {"WWW-Authenticate" => Rack::OpenID.build_header(
@@ -39,8 +39,8 @@ module OmniAuth
       end
 
       def identifier
-        i = options.identifier || request.params[options.identifier_param.to_s]
-        i = nil if i == ''
+        i = 'http://id.zhr.pl/' + (options.identifier || request.params[options.identifier_param.to_s])
+        i = nil if i == 'http://id.zhr.pl/'
         i
       end
       
@@ -60,8 +60,8 @@ module OmniAuth
       end
 
       def get_identifier
-        f = OmniAuth::Form.new(:title => 'OpenID Authentication')
-        f.label_field('OpenID Identifier', options.identifier_param)
+        f = OmniAuth::Form.new(:title => 'Log In')
+        f.label_field('zhrID', options.identifier_param)
         f.input_field('url', options.identifier_param)
         f.to_response
       end
