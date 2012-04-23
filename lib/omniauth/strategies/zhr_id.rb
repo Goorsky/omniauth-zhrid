@@ -40,8 +40,15 @@ module OmniAuth
 
       def identifier
         i = options.identifier || request.params[options.identifier_param.to_s]
-        i = nil if i == ''
+
+        if i == '' || i == nil
+          i = nil
+        else        
+          i = 'http://id.zhr.pl/' + i
+        end
+
         i
+
       end
       
       def request_phase
@@ -63,6 +70,7 @@ module OmniAuth
         f = OmniAuth::Form.new(:title => 'Logowanie')
         f.label_field('zhrID', options.identifier_param)
         f.input_field('url', options.identifier_param)
+        f.input_field('button', 'Dalej')
         f.to_response
       end
 
