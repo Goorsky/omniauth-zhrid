@@ -40,13 +40,11 @@ module OmniAuth
 
       def identifier
         i = options.identifier || request.params[options.identifier_param.to_s]
-
         if i == '' || i == nil
           i = nil
         else        
           i = 'http://id.zhr.pl/' + i
         end
-
         i
 
       end
@@ -60,7 +58,8 @@ module OmniAuth
         response = openid.call(env)
         case env['rack.openid.response']
         when Rack::OpenID::MissingResponse, Rack::OpenID::TimeoutResponse
-          fail!(:connection_failed)
+          #fail!(:connection_failed)
+          redirect '/'
         else
           response
         end
@@ -70,7 +69,7 @@ module OmniAuth
         f = OmniAuth::Form.new(:title => 'Logowanie')
         f.label_field('zhrID', options.identifier_param)
         f.input_field('url', options.identifier_param)
-        f.input_field('button', 'Dalej')
+        f.button('Dalej')
         f.to_response
       end
 

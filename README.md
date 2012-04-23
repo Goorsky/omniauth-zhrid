@@ -10,40 +10,28 @@ Provides strategies for authenticating to providers using the zhrID standard. (h
 
 Use the strategy as a middleware in your application:
 
-    require 'omniauth-openid'
-    require 'openid/store/filesystem'
+    require 'omniauth-zhrid'
 
     use Rack::Session::Cookie
-    use OmniAuth::Strategies::OpenID, :store => OpenID::Store::Filesystem.new('/tmp')
+    use OmniAuth::Strategies::zhrID
 
-Then simply direct users to `/auth/open_id` to prompt them for their OpenID identifier. You may also pre-set the identifier by passing an `identifier` parameter to the URL (Example: `/auth/open_id?openid_url=yahoo.com`).
+Then simply direct users to `/auth/open_id` to prompt them for their zhrID identifier. 
 
-A list of all OpenID stores is available at http://github.com/openid/ruby-openid/tree/master/lib/openid/store/
+Read this tutorial and include zhrID authentication in your Rails 3 app: http://asciicasts.com/episodes/241-simple-omniauth
 
 ## OmniAuth Builder
 
-If OpenID is one of several authentication strategies, use the OmniAuth Builder:
+If zhrID is one of several authentication strategies, use the OmniAuth Builder:
 
-    require 'omniauth-openid'
-    require 'openid/store/filesystem'
-
-    use OmniAuth::Builder do
-      provider :open_id, :store => OpenID::Store::Filesystem.new('/tmp')
-    end
-
-## Configured Identifiers
-
-You may pre-configure an OpenID identifier.  For example, to use Google's main OpenID endpoint:
+    require 'omniauth-zhrid'
 
     use OmniAuth::Builder do
-      provider :open_id, :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
+      provider :zhr_id
     end
-
-Note the use of nil, which will trigger ruby-openid's default Memory Store.
 
 ## License
 
-Copyright (c) 2011 Michael Bleigh and Intridea, Inc.
+Copyright (c) 2011 Michael Bleigh and Intridea, Inc., zhrID mods by Goorsky 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
