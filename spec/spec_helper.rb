@@ -5,7 +5,7 @@ SimpleCov.start
 require 'rspec'
 require 'rack/test'
 require 'webmock/rspec'
-require 'omniauth-openid'
+require 'omniauth-zhrid'
 
 RSpec.configure do |config|
   config.include WebMock::API

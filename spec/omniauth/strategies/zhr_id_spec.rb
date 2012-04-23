@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'rack/openid'
-require 'omniauth-openid'
+require 'omniauth-zhrid'
 
 describe OmniAuth::Strategies::ZhrID, :type => :strategy do
   def app
