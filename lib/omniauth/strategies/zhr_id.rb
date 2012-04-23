@@ -59,8 +59,7 @@ module OmniAuth
         case env['rack.openid.response']
         when Rack::OpenID::MissingResponse, Rack::OpenID::TimeoutResponse
           #fail!(:connection_failed)
-          flash[:error] = 'Niepoprawny identyfikator'
-          redirect '/'
+          redirect '/?zhrid_error=missing_response'
         else
           response
         end
@@ -85,7 +84,7 @@ module OmniAuth
       end
 
       def callback_phase
-        return fail!(:invalid_credentials) unless openid_response && openid_response.status == :success
+        return  redirect '/?zhrid_error=callback_error' unless openid_response && openid_response.status == :success
         super
       end
 
