@@ -39,8 +39,8 @@ module OmniAuth
       end
 
       def identifier
-        i = 'http://id.zhr.pl/' + (options.identifier || request.params[options.identifier_param.to_s])
-        i = nil if i == 'http://id.zhr.pl/'
+        i = options.identifier || request.params[options.identifier_param.to_s]
+        i = nil if i == ''
         i
       end
       
